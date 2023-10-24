@@ -16,10 +16,14 @@
 <body>
     <!-- Header Section Start -->
 
-    <header class="headre">
+    <header class="header">
+
+        <div id="menu-btn" class="fas fa-bars"></div>
+
         <a class="logo" href="#home">Portfolio.</a>
+
         <nav class="navbar">
-            <a class="" href="#home">Home</a>
+            <a class="active" href="#home">Home</a>
             <a class="" href="#about">About</a>
             <a class="" href="#services">Services</a>
             <a class="" href="#portfolio">Portfolio</a>
@@ -63,7 +67,7 @@
 
 
     <!-- Custom JavaScript Link-->
-    <script src="./js/script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
