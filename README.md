@@ -4,4 +4,6 @@
 
 # Setup This Project you must need php
 
-    run Command php -S localhost:<Port number anything you wish>
+- run Command 
+    
+    php -S localhost:8000
