@@ -1,3 +1,10 @@
+<?php
+include './include/config.php';
+$sql = "SELECT * FROM users where users.id=1";
+$result = mysqli_query($con, $sql);
+$data = mysqli_fetch_assoc($result);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,12 +12,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Personal Bootstrap Template</title>
+  <title><?php echo $data['name'] ?> - <?php echo $data['title'] ?></title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/favicon.ico" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -27,13 +34,7 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Personal
-  * Updated: Sep 18 2023 with Bootstrap v5.3.2
-  * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
@@ -42,10 +43,10 @@
   <header id="header">
     <div class="container">
 
-      <h1><a href="index.html">Emily Jones</a></h1>
+      <h1><a href="/"><?= $data['name'] ?></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-      <h2>I'm a passionate <span>graphic designer</span> from New York</h2>
+      <h2>I'm a passionate <span><?= $data['title'] ?></span> from <?= $data['location'] ?></h2>
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -60,10 +61,24 @@
       </nav><!-- .navbar -->
 
       <div class="social-links">
-        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <?php if ($data['facebook']) { ?>
+          <a target="_blank" href="<?= $data['facebook'] ?>" class="facebook"><i class="bi bi-facebook"></i></a>
+        <?php } ?>
+        <?php if ($data['twitter']) { ?>
+          <a target="_blank" href="<?= $data['twitter'] ?>" class="twitter"><i class="bi bi-twitter"></i></a>
+        <?php } ?>
+        <?php if ($data['linkedin']) { ?>
+          <a target="_blank" href="<?= $data['linkedin'] ?>" class="linkedin"><i class="bi bi-linkedin"></i></a>
+        <?php } ?>
+        <?php if ($data['instagram']) { ?>
+          <a target="_blank" href="<?= $data['instagram'] ?>" class="instagram"><i class="bi bi-instagram"></i></a>
+        <?php } ?>
+        <?php if ($data['youtube']) { ?>
+          <a target="_blank" href="<?= $data['youtube'] ?>" class="youtube"><i class="bi bi-youtube"></i></a>
+        <?php } ?>
+        <?php if ($data['github']) { ?>
+          <a target="_blank" href="<?= $data['github'] ?>" class="github"><i class="bi bi-github"></i></a>
+        <?php } ?>
       </div>
 
     </div>
@@ -85,32 +100,34 @@
           <img src="assets/img/me.jpg" class="img-fluid" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>UI/UX &amp; Graphic Designer</h3>
+          <h3><?= $data['title'] ?></h3>
           <p class="fst-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
+            <?= $data['slogan'] ?>
           </p>
           <div class="row">
             <div class="col-lg-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span>1 May 1995</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span>www.example.com</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span>+123 456 7890</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span>New York, USA</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Birthday:</strong> <span><?= date('d M Y', strtotime($data['birthday'])) ?></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Website:</strong> <span><a target="_blank" href="<?= $data['website'] ?>"><?= $data['website'] ?></a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Phone:</strong> <span><a href="tel:<?= $data['phone'] ?>"><?= $data['phone'] ?></a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>City:</strong> <span><?= $data['city'] ?></span></li>
               </ul>
             </div>
             <div class="col-lg-6">
               <ul>
-                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span>30</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span>Master</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>PhEmailone:</strong> <span>email@example.com</span></li>
-                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span>Available</span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Age:</strong> <span><?= $data['age'] ?></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Degree:</strong> <span><?= $data['degree'] ?></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Email:</strong> <span><a href="mailto:<?= $data['email_show'] ?>"><?= $data['email_show'] ?></a></span></li>
+                <li><i class="bi bi-chevron-right"></i> <strong>Freelance:</strong> <span><?php if ($data['freelance'] = true) {
+                                                                                            echo 'Available';
+                                                                                          } else {
+                                                                                            echo 'Not-Available';
+                                                                                          } ?></span></li>
               </ul>
             </div>
           </div>
           <p>
-            Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis.
-            Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque. Aliquid amet quidem ut quaerat cupiditate. Ab et eum qui repellendus omnis culpa magni laudantium dolores.
+            <?= $data['description'] ?>
           </p>
         </div>
       </div>
@@ -118,42 +135,28 @@
     </div><!-- End About Me -->
 
     <!-- ======= Counts ======= -->
+    <?php
+    $counter = "SELECT * FROM `counter`";
+    $counter_result = mysqli_query($con, $counter);
+    ?>
+
     <div class="counts container">
-
       <div class="row">
-
-        <div class="col-lg-3 col-md-6">
-          <div class="count-box">
-            <i class="bi bi-emoji-smile"></i>
-            <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Happy Clients</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-md-0">
-          <div class="count-box">
-            <i class="bi bi-journal-richtext"></i>
-            <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Projects</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-headset"></i>
-            <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Hours Of Support</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6 mt-5 mt-lg-0">
-          <div class="count-box">
-            <i class="bi bi-award"></i>
-            <span data-purecounter-start="0" data-purecounter-end="24" data-purecounter-duration="1" class="purecounter"></span>
-            <p>Awards</p>
-          </div>
-        </div>
-
+        <?php
+        if ($counter_result->num_rows > 0) {
+          while ($row = $counter_result->fetch_assoc()) {
+        ?>
+            <div class="col-lg-3 col-md-6 mt-5 ">
+              <div class="count-box">
+                <i class="<?= $row['icon'] ?>"></i>
+                <span data-purecounter-start="<?= $row['pre'] ?>" data-purecounter-end="<?= $row['post'] ?>" data-purecounter-duration="1" class="purecounter"></span>
+                <p><?= $row['title'] ?></p>
+              </div>
+            </div>
+        <?php
+          }
+        }
+        ?>
       </div>
 
     </div><!-- End Counts -->
@@ -756,11 +759,14 @@
   </section><!-- End Contact Section -->
 
   <div class="credits">
-    <!-- All the links in the footer should remain intact. -->
-    <!-- You can delete the links only if you purchased the pro version. -->
-    <!-- Licensing information: https://bootstrapmade.com/license/ -->
-    <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/personal-free-resume-bootstrap-template/ -->
-    Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    <?php
+    $details = "SELECT * FROM details where details.id=1";
+    $details_result = mysqli_query($con, $details);
+
+    $details_data = mysqli_fetch_assoc($details_result);
+    ?>
+
+    Designed by <a target="_blank" href="<?= $details_data['url'] ?>"><?= $details_data['company'] ?></a>
   </div>
 
   <!-- Vendor JS Files -->
