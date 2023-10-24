@@ -47,10 +47,13 @@ body {
   overflow: hidden;
   transition: 0.2s linear !important;
 }
+body.active{
+  padding-left: 35rem;
+}
 .header {
   position: fixed;
   top: 0;
-  left: 0;
+  left: -35rem;
   height: 100vh;
   background-color: var(--white);
   border-right: var(--border-bold);
@@ -109,3 +112,4 @@ body {
 .header.active{
   left: -35rem;
 }
+

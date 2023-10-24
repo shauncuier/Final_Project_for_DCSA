@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/x-icon" href="./favicon.ico">
     <title>Portfolio For Dcsa</title>
 
     <!-- Font Awesome CDN Link -->
@@ -24,10 +25,10 @@
 
         <nav class="navbar">
             <a class="active" href="#home">Home</a>
-            <a class="" href="#about">About</a>
-            <a class="" href="#services">Services</a>
-            <a class="" href="#portfolio">Portfolio</a>
-            <a class="" href="#contact">Contact</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#contact">Contact</a>
         </nav>
 
         <div class="follow">
